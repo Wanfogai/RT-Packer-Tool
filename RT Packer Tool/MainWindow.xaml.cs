@@ -99,11 +99,5 @@ namespace RT_Packer_Tool
                 }
             }
         }
-        private void Sprite_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            var st = Sprite.RenderTransform;
-            double zoom = e.Delta > 0 ? .2 : -.2;
-            st.Value.Scale(+zoom, +zoom);
-        }
     }
 }

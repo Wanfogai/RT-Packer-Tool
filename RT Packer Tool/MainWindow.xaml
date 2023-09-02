@@ -21,7 +21,7 @@
             <TabItem x:Name="TImage" Header="Изображения">
                 <Grid Background="#FFE5E5E5">
                     <ListBox x:Name="ImageBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,385,0" SelectionChanged="ImageBox_SelectionChanged"/>
-                    <Image x:Name="Sprite" Margin="216,2,2,3" Stretch="None" MouseWheel="Sprite_MouseWheel" RenderTransformOrigin="0,0"/>
+                    <Image x:Name="Sprite" Margin="216,2,2,3" Stretch="None" RenderTransformOrigin="0,0"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TSound" Header="Звуки">
