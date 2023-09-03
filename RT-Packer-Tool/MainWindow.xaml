@@ -7,17 +7,33 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid x:Name="Main">
-        <Menu x:Name="Menu">
-            <MenuItem Header="Файл">
-                <MenuItem Header="Открыть ресурс-файл"></MenuItem>
-                <MenuItem Header="Сохранить как"></MenuItem>
-                <MenuItem Header="Сохранить"></MenuItem>
+        <Menu x:Name="Menu" Height="20" VerticalAlignment="Top">
+            <MenuItem x:Name="MFile" Header="Файл">
+                <MenuItem x:Name="MOpen" Header="Открыть ресурс-файл" Click="MOpen_Click"></MenuItem>
+                <MenuItem x:Name="MSaveAs" Header="Сохранить как"></MenuItem>
+                <MenuItem x:Name="MSave" Header="Сохранить"></MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="Выход"></MenuItem>
+                <MenuItem x:Name="MExit" Header="Выход"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Инструменты"></MenuItem>
-            <MenuItem Header="Найстройки"></MenuItem>
+            <MenuItem x:Name="MTools" Header="Инструменты"></MenuItem>
+            <MenuItem x:Name="MSettings" Header="Найстройки"></MenuItem>
         </Menu>
+        <TabControl x:Name="Tabs" Margin="0,20,0,0">
+            <TabItem x:Name="Images" Header="Изображения">
+                <Grid Background="#FFE5E5E5" Margin="0,0,285,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="ImageBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,305,0" HorizontalAlignment="Left" Width="204" SelectionChanged="ImageBox_SelectionChanged"/>
+                    <Image x:Name="Sprite" Margin="207,2,2,2"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="Sounds" Header="Звуки">
+                <Grid Background="#FFE5E5E5" Margin="0,0,285,0">
+                    <ListBox x:Name="SoundBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,305,0" Width="204" HorizontalAlignment="Left"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>
