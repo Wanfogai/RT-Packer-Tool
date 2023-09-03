@@ -1,4 +1,4 @@
-﻿<Window x:Class="RT_Packer_Tool.MainWindow"
+﻿<Window x:Name="Window" x:Class="RT_Packer_Tool.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:RT_Packer_Tool"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="Main">
+        <Menu x:Name="Menu">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Открыть ресурс-файл"></MenuItem>
+                <MenuItem Header="Сохранить как"></MenuItem>
+                <MenuItem Header="Сохранить"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Выход"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Инструменты"></MenuItem>
+            <MenuItem Header="Найстройки"></MenuItem>
+        </Menu>
 
     </Grid>
 </Window>
