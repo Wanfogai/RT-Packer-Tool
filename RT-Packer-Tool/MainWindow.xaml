@@ -25,7 +25,8 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <ListBox x:Name="ImageBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,305,0" HorizontalAlignment="Left" Width="204" SelectionChanged="ImageBox_SelectionChanged"/>
-                    <Image x:Name="Sprite" Margin="207,2,2,2"/>
+                    <Image x:Name="Sprite" Margin="207,2,2,2">
+                    </Image>
                 </Grid>
             </TabItem>
             <TabItem x:Name="Sounds" Header="Звуки">

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RT_Packer_Tool
 {
@@ -31,7 +33,7 @@ namespace RT_Packer_Tool
             if (!Directory.Exists(@"Temp"))
                 new DirectoryInfo(@"Temp").Create();
             else
-                ClearTemp();
+                ClearTemp("");
         }
 
         private void MOpen_Click(object sender, RoutedEventArgs e)
@@ -53,11 +55,12 @@ namespace RT_Packer_Tool
             }
         }
 
-        public void ClearTemp() 
+        public void ClearTemp(string execut) 
         {
             foreach (FileInfo file in new DirectoryInfo(@"Temp/").GetFiles())
             {
-                file.Delete();
+                if (file.Name != execut)
+                    file.Delete();
             }
         }
 
@@ -83,6 +86,7 @@ namespace RT_Packer_Tool
 
         public void ChangeImage() 
         {
+            Close();
             using (ZipArchive archive = ZipFile.OpenRead(PackPath))
             {
                 foreach (ZipArchiveEntry entry in archive.Entries)
@@ -94,10 +98,17 @@ namespace RT_Packer_Tool
                             entry.ExtractToFile($@"Temp/{entry.Name}");
                         }
                         ImageSourceConverter converter = new ImageSourceConverter();
-                        Sprite.SetValue(Image.SourceProperty, converter.ConvertFromString($@"Temp/{entry.Name}"));
+                        Sprite.SetValue(System.Windows.Controls.Image.SourceProperty, converter.ConvertFromString($@"Temp/{entry.Name}"));
+                        ClearTemp($@"{entry.Name}");
                     }
                 }
             }
+        }
+        public void Close() 
+        {
+            Sprite.Source = null;
+            UpdateLayout();
+            GC.Collect();
         }
 
         private void ImageBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
